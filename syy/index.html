@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--script(src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js")-->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+<input type="text" id="inp">
+<input type="submit" id="sub">
+<div id="box"></div>
+<script>
+    $("#sub").click(function(){
+        var val=$("#inp").val()
+        console.log(val)
+        $.ajax({
+            url:"http://localhost:3000",
+            type:"POST",
+            data:{name:val},
+            success:function(e){
+                console.log(e);
+                var str="";
+                for(var i in e){
+                    var t=e[i];
+                    console.log(t);
+                    for(var i in t){
+                        str+=t[i].name+'<br>'
+                    }
+                }
+                $('#box').html(str)
+            }
+        })
+    })
+</script>
+</body>
+</html>
